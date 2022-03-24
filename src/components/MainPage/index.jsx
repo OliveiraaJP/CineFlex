@@ -14,24 +14,23 @@ function MainPage(){
         const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies/");
         promise.then(response => {
             const {data} = response;
-            console.log("data",data);
+            //console.log("data",data);
             setMovies(data)
         });
         
     }, [])
 
-console.log(movies);
+//console.log(movies);
 
     return(
         <>
         <H1>Selecione o filme</H1>
         <MainEl> 
             {movies.map((movie) => (
-                <Movie id={movie.id} posterURL={movie.posterURL} />
+                <Movie key = {movie.id} id={movie.id} posterURL={movie.posterURL} />
     ))}
         </MainEl>
         </>
-
     )
 }
 
