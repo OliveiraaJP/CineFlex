@@ -19,28 +19,28 @@ function MoviePage(){
             const {data} = response;
             setChosenMovie(data)
         });
-
-        promise.catch("erro")
     }, [])
     
     console.log(days);
     
-    return(
+    return chosenMovie.length != 0 ? (
         <>
         <$H1>Selecione o horário</$H1>
         <$Days> 
             <p>Quinta-feira - 24/06/2021</p>
             <div>
             {days.map((day, i) => {
-                const {showtimes: showTimes, id, weekday, date} = day;
-                return(
+                const {id, weekday, date} = day;
+                return (
                     <div key={i}>{weekday} {id} {date}</div>
                 )
             })}
             </div>
         </$Days>
         </>
-    )
+    ) : (
+        <p> oi</p>
+    ) 
 }
 
 export default MoviePage;
