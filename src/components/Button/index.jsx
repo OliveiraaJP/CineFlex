@@ -1,8 +1,8 @@
 import { ButtonEl } from "./styles";
 
-function Button({buttonHTML}){
+function Button({buttonHTML="erro", isLarge=false}){
     return(
-    <ButtonEl > {buttonHTML} </ButtonEl>
+    <ButtonEl isLargee={isLarge}> {buttonHTML} </ButtonEl>
     )
 }
 

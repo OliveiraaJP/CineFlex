@@ -1,47 +1,52 @@
 import {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-//import ButtonEl from "../Button";
+import ButtonEl from "../Button";
 
 import { $H1, $Days } from "./styles";
 
 
 function MoviePage(){
-
-    const [chosenMovie, setChosenMovie] = useState([])
     const { idMovie } = useParams()
-    const {days} = chosenMovie
+
+    //const [chosenMovie, setChosenMovie] = useState({})
+    const [days, setDays] = useState([])
     
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`)
         promise.then(response => {
             const {data} = response;
-            setChosenMovie(data)
+            //setChosenMovie(data)
+            setDays(data.days)
         });
     }, [])
     
-    console.log(days);
+    //console.log(days);
     
-    return chosenMovie.length != 0 ? (
+    return  (
         <>
         <$H1>Selecione o horário</$H1>
-        <$Days> 
-            <p>Quinta-feira - 24/06/2021</p>
-            <div>
-            {days.map((day, i) => {
-                const {id, weekday, date} = day;
+        <$Days>       
+            {days.map((day) => {
+                const {showtimes: times, id, weekday, date} = day;
                 return (
-                    <div key={i}>{weekday} {id} {date}</div>
+                    <span key={id}>
+                    <p> {weekday} - {date}</p>
+                    
+                    <span>
+                    {times.map((time, i) => 
+                    <Link to={`/sessao/${time.id}`} style={{textDecoration:'none'}} key={i}> 
+                        <ButtonEl buttonHTML={time.name} /> 
+                    </Link>
+                    )}
+                    </span>
+                    </span>
                 )
             })}
-            </div>
         </$Days>
         </>
-    ) : (
-        <p> oi</p>
-    ) 
+    )
 }
 
 export default MoviePage;
-// <ButtonEl buttonHTML={"19:00"}/>

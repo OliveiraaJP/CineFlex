@@ -16,15 +16,18 @@ export const $Days = styled.div`
 width: calc(100vw - 48px);
 padding: 0 24px;
 
-background-color: lightcoral;
 
     p{
         font-size: 20px;
         margin-bottom: 22px;
+        color: #293845;
     }
 
     span{
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 23px;     
     }
+
+    
 `
