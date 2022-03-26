@@ -17,12 +17,11 @@ function MoviePage(){
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`)
         promise.then(response => {
             const {data} = response;
-            //setChosenMovie(data)
+            /* setChosenMovie(data) */
             setDays(data.days)
         });
     }, [])
     
-    //console.log(days);
     
     return  (
         <>
