@@ -2,9 +2,10 @@ import { useParams, Link } from "react-router-dom";
 import {useState, useEffect} from "react"
 import axios from "axios"
 
-import Forms from "./Forms"
+import {$H1, $AllSeats, $Seat, $SeatStatus, $SeatEx, $Forms,$InputName, $InputCPF } from "./styles"
 
-import {$H1, $AllSeats, $Seat, $SeatStatus, $SeatEx} from "./styles"
+import Button from "../Button"
+
 
 
 function SessionPage(){
@@ -40,6 +41,29 @@ function SessionPage(){
     console.log(selectedSeat);
 
 
+
+
+    const [name, setName] = useState("")
+    const [cpf, setCpf] = useState("")
+
+    function reserveSeat(event){
+        event.preventDefault()
+        const order = {
+            ids: {selectedSeat},
+            name:{name},
+            cpf:{cpf}
+        }
+
+        const request = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",order)
+
+        request.then(response => console.log(response))
+        request.catch(err => console.log(err))
+    }
+
+console.log(name);
+console.log(cpf);
+
+
     return(
         <>
         <$H1>Selecione o(s) assento(s)</$H1>
@@ -71,7 +95,15 @@ function SessionPage(){
         <span>  <$SeatEx/> Indisponível</span>
         </$SeatStatus>
 
-        <Forms />
+        <$Forms onSubmit={reserveSeat}>
+            <label>Nome do comprador:</label>
+            <$InputName  value={name} onChange={e => setName(e.target.value)} required/>
+            <label>CPF do comprador:</label>
+            <$InputCPF value={cpf} onChange={e => setCpf(e.target.value)} min-length={11} max-length={11} required/>
+            <div>
+                <Button isLarge buttonHTML="Reservar assento(s)" type="submit"/>    
+            </div>
+        </$Forms>
         </>
     )
 }
