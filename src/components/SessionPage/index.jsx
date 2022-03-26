@@ -13,6 +13,8 @@ function SessionPage(){
     const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`)
     const [seats, setSeats] = useState([]);
 
+    const [selectedSeat, setSelectedSeat] = useState([]);
+
     useEffect(() => {
         promise.then(response => {
             const { data } = response
@@ -21,8 +23,22 @@ function SessionPage(){
         })
     }, [])
 
-console.log(seats);
-console.log(typeof seats);
+
+    function selectSeat(idSeat, nameSeat){
+        console.log(idSeat, nameSeat);
+        if(selectedSeat.includes(idSeat)){
+            const newArray = selectedSeat.filter(el => {
+                if(idSeat !== el){
+                    return el
+                }
+            }); 
+            setSelectedSeat(newArray)
+        } else{
+            setSelectedSeat([...selectedSeat, idSeat])
+        }
+    }
+    console.log(selectedSeat);
+
 
     return(
         <>
@@ -31,15 +47,22 @@ console.log(typeof seats);
         <$AllSeats>
             {seats.map((seat, i) => {
                 const {id, name, isAvailable} = seat
-                if(isAvailable === true){
+                if(isAvailable === true && !selectedSeat.includes(id)){
                 return(
-                    <$Seat> {name} </$Seat>
-                )} else {
+                    <$Seat onClick={() => selectSeat(id, name)}> {name} </$Seat>
+                )} 
+                
+                else if(selectedSeat.includes(id)){
+                    return(
+                        <$SeatEx borderAvailable backAvailable onClick={() => selectSeat(id, name)}> {name} </$SeatEx>
+                    )} 
+                
+                else {
                     return (
                         <$SeatEx> {name} </$SeatEx>
                     )
                 }
-            })}
+            })}            
         </$AllSeats>
 
         <$SeatStatus> 

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 
-export const $Forms = styled.div`
+export const $Forms = styled.form`
 
 width: 90vw;
 margin: auto;
@@ -12,10 +12,16 @@ margin: auto;
         height: 51px;
         border:1px solid #D5D5D5;
         border-radius: 3px;
+        padding-left: 18px;
+        
+    }
 
-        ::placeholder{
-            margin-left: 10px;
-        }
+    div{
+        margin-top: 20px;
+        width: 100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
     }
 `
 
@@ -29,10 +35,6 @@ export const $InputName = styled.input.attrs({
     height: 51px;
     border:1px solid #D5D5D5;
     border-radius: 3px;
-
-    ::placeholder{
-            margin-left: 10px;
-    }
 `
 
 export const $InputCPF = styled.input.attrs({
@@ -45,8 +47,4 @@ export const $InputCPF = styled.input.attrs({
     height: 51px;
     border:1px solid #D5D5D5;
     border-radius: 3px;
-
-    ::placeholder{
-            margin-left: 10px;
-    }
 `
