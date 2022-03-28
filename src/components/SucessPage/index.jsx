@@ -11,6 +11,8 @@ function SucessPage(){
     const {state} = navigate
     console.log(state)
 
+    let formatCPF = state.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+
     return(
         <>
         <$H1>Pedido feito <br/> com sucesso!</$H1>
@@ -34,7 +36,7 @@ function SucessPage(){
         <$Box>
             <h2>Comprador </h2> 
             <p>Nome: {state.name}</p>
-            <p>CPF: {state.cpf}</p>
+            <p>CPF: {formatCPF}</p>
         </$Box>
 
         <$ButtonBox>

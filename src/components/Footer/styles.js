@@ -42,7 +42,7 @@ margin-right: 14px;
 `
 
 export const $textBox = styled.div`
-width: 87%;
+width: calc(100% - 120px);
 
 
 font-size: 26px;
@@ -52,4 +52,11 @@ align-items: flex-start;
 justify-content: center;
 
 flex-direction: column;
+
+    p{
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 `
