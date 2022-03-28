@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const $H1 = styled.span`
 width: 100vw;
-height: 110px;
+height: 80px;
 
 display: flex;
 align-items: center;
@@ -15,7 +15,7 @@ color: #293845;
 export const $Days = styled.div`
 width: calc(100vw - 48px);
 padding: 0 24px;
-
+margin-bottom: 117px;
 
     p{
         font-size: 20px;

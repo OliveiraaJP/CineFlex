@@ -13,11 +13,13 @@ justify-content: space-around;
 
 export const H1 = styled.span`
 width: 100vw;
-height: 110px;
+height: 80px;
+margin-bottom: 20px;
 
 display: flex;
 align-items: center;
 justify-content: center;
+
 
 font-size: 24px;
 color: #293845;
